@@ -1,0 +1,33 @@
+2010-03-29, Version 1.1.2
+	* librouteros(3): Two memory leaks have been fixed in “ros_query” and
+	  “ros_connect”.
+
+2010-01-04, Version 1.1.1
+	* ros_system_resource: Report bytes rather than KiBibytes. The CPU
+	  frequency is reported in Hertz rather than Megahertz.
+
+2009-12-25, Version 1.1.0
+	* ros_system_resource: Added high-level interface for
+	  “/system/resource/print”.
+	* ros: The “system-resource” high-level command has been added.
+	* ros: Usage output has been improved.
+	* librouteros(3): Versioning information has been added.
+
+2009-12-22, Version 1.0.1
+	* ros_query: Sanity check the arguments. Passing NULL as connection
+	  pointer (and possibly other arguments) would lead to a segmentation
+	  fault when the null pointer was dereferenced. Thanks to Andrey
+	  Ponomarenko for pointing out the problem.
+	* routeros_api.h: Include <stdbool.h> when compiling with g++. As a
+	  GNU extension, this will define _Bool for C++ programs.
+
+2009-12-18, Version 1.0.0
+	* Code cleanup: Avoid compiler warnings.
+
+2009-11-27, Version 0.2.0
+	* High-level interfaces have been added for "interface" and
+	  "registration-table".
+	* ros: Command line utility has been added.
+
+2009-11-25, Version 0.1.0
+	* Initial release.

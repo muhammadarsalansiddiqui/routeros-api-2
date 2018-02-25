@@ -24,5 +24,5 @@ librouteros_la_SOURCES = main.c routeros_api.h routeros_version.h \
 
 bin_PROGRAMS = ros-api
 
-ros-api_SOURCES = ros-api.c
-ros-api_LDADD = librouteros.la
+ros_api_SOURCES = ros-api.c
+ros_api_LDADD = librouteros.la

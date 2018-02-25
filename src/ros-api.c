@@ -211,15 +211,12 @@ int main (int argc, char **argv) /* {{{ */
 	host = argv[optind];
 	command = argv[optind+1];
 
-	if (passwd == NULL)
-	{
+	if (passwd == NULL && !opt_silent)
 		passwd = read_password ();
-		if (passwd == NULL)
-			exit (EXIT_FAILURE);
-	}
+	if (passwd == NULL)
+		exit (EXIT_FAILURE);
 
-	c = ros_connect (host, ROUTEROS_API_PORT,
-			opt_username, passwd);
+	c = ros_connect (host, ROUTEROS_API_PORT, opt_username, passwd);
 	memset (passwd, 0, strlen (passwd));
 	if (c == NULL)
 	{

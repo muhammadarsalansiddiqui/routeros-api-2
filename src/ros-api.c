@@ -170,7 +170,7 @@ static void exit_usage (void) /* {{{ */
 int main (int argc, char **argv) /* {{{ */
 {
 	ros_connection_t *c;
-	char *passwd;
+	char *passwd = NULL;
 	const char *host;
 	const char *command;
 

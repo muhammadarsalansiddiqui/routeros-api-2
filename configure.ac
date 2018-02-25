@@ -1,5 +1,4 @@
 AC_INIT([librouteros],[1.1.2])
-AC_CONFIG_MACRO_DIRS([m4])
 AC_CONFIG_SRCDIR(src/main.c)
 AC_CONFIG_HEADERS(src/config.h)
 AM_INIT_AUTOMAKE(dist-bzip2)

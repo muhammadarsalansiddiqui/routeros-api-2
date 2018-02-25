@@ -185,7 +185,7 @@ int main (int argc, char **argv) /* {{{ */
 				break;
 
 			case 'p':
-				password = optarg;
+				passwd = optarg;
 				break;
 				
 			case 'h':

@@ -42,6 +42,7 @@
 #endif
 
 static const char *opt_username = "admin";
+int opt_silent = 0;
 
 static int result_handler (ros_connection_t *c, const ros_reply_t *r, /* {{{ */
 		void *user_data)
@@ -51,7 +52,7 @@ static int result_handler (ros_connection_t *c, const ros_reply_t *r, /* {{{ */
 	if (r == NULL)
 		return (0);
 
-	if (!silent) 
+	if (!opt_silent) 
 		printf ("Status: %s\n", ros_reply_status (r));
 
 	for (i = 0; /* true */; i++)
@@ -71,11 +72,11 @@ static int result_handler (ros_connection_t *c, const ros_reply_t *r, /* {{{ */
 			break;
 		}
 
-		if (!silent) 
+		if (!opt_silent) 
 			printf ("  Param %u: %s = %s\n", i, key, val);
 	}
 
-	if (!silent) 
+	if (!opt_silent) 
 		printf ("===\n");
 
 	return (result_handler (c, ros_reply_next (r), user_data));
@@ -90,7 +91,6 @@ static char *read_password (void) /* {{{ */
 	char buffer[1024];
 	size_t buffer_len;
 	char *passwd;
-	int silent = 0;
 
 	tty = fopen ("/dev/tty", "w+");
 	if (tty == NULL)
@@ -194,7 +194,7 @@ int main (int argc, char **argv) /* {{{ */
 				break;
 				
 			case 's':
-				silent = 1;
+				opt_silent = 1;
 				break;
 				
 			case 'h':

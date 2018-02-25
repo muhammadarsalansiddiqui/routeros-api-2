@@ -51,7 +51,8 @@ static int result_handler (ros_connection_t *c, const ros_reply_t *r, /* {{{ */
 	if (r == NULL)
 		return (0);
 
-	printf ("Status: %s\n", ros_reply_status (r));
+	if (!silent) 
+		printf ("Status: %s\n", ros_reply_status (r));
 
 	for (i = 0; /* true */; i++)
 	{
@@ -70,10 +71,12 @@ static int result_handler (ros_connection_t *c, const ros_reply_t *r, /* {{{ */
 			break;
 		}
 
-		printf ("  Param %u: %s = %s\n", i, key, val);
+		if (!silent) 
+			printf ("  Param %u: %s = %s\n", i, key, val);
 	}
 
-	printf ("===\n");
+	if (!silent) 
+		printf ("===\n");
 
 	return (result_handler (c, ros_reply_next (r), user_data));
 } /* }}} int result_handler */
@@ -87,6 +90,7 @@ static char *read_password (void) /* {{{ */
 	char buffer[1024];
 	size_t buffer_len;
 	char *passwd;
+	int silent = 0;
 
 	tty = fopen ("/dev/tty", "w+");
 	if (tty == NULL)
@@ -150,11 +154,12 @@ static char *read_password (void) /* {{{ */
 
 static void exit_usage (void) /* {{{ */
 {
-	printf ("Usage: ros [options] <host> <command> [args]\n"
+	printf ("Usage: ros-api [options] <host> <command> [args]\n"
 			"\n"
 			"OPTIONS:\n"
 			"  -u <user>       Use <user> to authenticate.\n"
 			"  -p <password>   Use <password> to authenticate.\n"
+			"  -s              Suppress output.\n"
 			"  -h              Display this help message.\n"
 			"\n");
 	if (ros_version () == ROS_VERSION)
@@ -176,7 +181,7 @@ int main (int argc, char **argv) /* {{{ */
 
 	int option;
 
-	while ((option = getopt (argc, argv, "u:p:h?")) != -1)
+	while ((option = getopt (argc, argv, "u:p:sh?")) != -1)
 	{
 		switch (option)
 		{
@@ -186,6 +191,10 @@ int main (int argc, char **argv) /* {{{ */
 
 			case 'p':
 				passwd = optarg;
+				break;
+				
+			case 's':
+				silent = 1;
 				break;
 				
 			case 'h':

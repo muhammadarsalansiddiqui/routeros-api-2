@@ -1,4 +1,4 @@
-AC_INIT(librouteros, 1.2.0)
+AC_INIT([librouteros],[1.1.2])
 AC_CONFIG_SRCDIR(src/main.c)
 AC_CONFIG_HEADERS(src/config.h)
 AM_INIT_AUTOMAKE(dist-bzip2)
@@ -65,4 +65,5 @@ AC_ARG_ENABLE(debug, [AS_HELP_STRING([--enable-debug], [Enable extensive debuggi
 ], [])
 AM_CONDITIONAL(BUILD_WITH_DEBUG, test "x$enable_debug" = "xyes")
 
-AC_OUTPUT(Makefile doc/Makefile src/Makefile src/routeros_version.h)
+AC_CONFIG_FILES([Makefile doc/Makefile src/Makefile src/routeros_version.h])
+AC_OUTPUT

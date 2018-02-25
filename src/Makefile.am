@@ -1,5 +1,7 @@
 AUTOMAKE_OPTIONS = foreign no-dependencies
 
+ACLOCAL_AMFLAGS += -I m4
+
 if COMPILER_IS_GCC
 AM_CFLAGS = -Wall -Werror
 if BUILD_WITH_DEBUG

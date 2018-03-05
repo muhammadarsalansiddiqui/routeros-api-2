@@ -5,8 +5,6 @@ AC_CONFIG_HEADERS(src/config.h)
 AM_INIT_AUTOMAKE(dist-bzip2)
 AC_LANG(C)
 
-# AC_PREFIX_DEFAULT("/opt/librouteros")
-
 # API version
 LIBROUTEROS_MAJOR=`echo $PACKAGE_VERSION | cut -d'.' -f1`
 LIBROUTEROS_MINOR=`echo $PACKAGE_VERSION | cut -d'.' -f2`
@@ -66,5 +64,5 @@ AC_ARG_ENABLE(debug, [AS_HELP_STRING([--enable-debug], [Enable extensive debuggi
 ], [])
 AM_CONDITIONAL(BUILD_WITH_DEBUG, test "x$enable_debug" = "xyes")
 
-AC_CONFIG_FILES([Makefile doc/Makefile src/Makefile src/routeros_version.h])
+AC_CONFIG_FILES([Makefile doc/Makefile src/Makefile src/ros-api/Makefile src/routeros_version.h])
 AC_OUTPUT

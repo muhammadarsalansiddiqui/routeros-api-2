@@ -1,1 +1,1 @@
-﻿static char *read_password (void);
+static char *read_password (void);
